@@ -40,6 +40,7 @@
     <view class='pay'>
       <text>支付方式：微信</text>
       <text>商品合计： ￥ {{orderDetail.price}}</text>
+      <text class='text-color'>优惠： {{orderDetail.bonus ? orderDetail.bonus : '无优惠'}}</text>
     </view>
     <text class='topay'>实付：￥{{orderDetail.price}}</text>
   </view>

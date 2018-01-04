@@ -34,7 +34,7 @@
     <view class='menu-item'>
       <image class='menu-icon' src='/images/icon_contact.png'></image>
       <view class='text'>
-        <button open-type="contact" class='contact'>客户服务</button>
+        <button open-type="contact" class='contact'>联系客服</button>
         <image class='arrow-right' src='/images/arrow-right.png'></image>
       </view>
     </view>

@@ -31,7 +31,7 @@ Page({
         },
         success: (res) => {
           wx.hideLoading()
-          if (res.data.length == 0) {
+          if (res.data.data.length == 0) {
             this.setData({
               inputKey: '',
               noResult: '未找到相关商品，换个关键词试试',

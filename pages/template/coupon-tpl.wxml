@@ -1,0 +1,42 @@
+<template name='coupon'>
+  <view class='coupon'>
+    <image wx:if='{{used == 0 }}' src='/images/coupon_01.png'></image>
+    <image wx:if='{{used == 1 }}' src='/images/coupon_02.png'></image>
+    <image wx:if='{{used == 2 }}' src='/images/coupon_03.png'></image>
+    <view class='desc-wrapper'>
+      <text class='face-value'>{{price}}元</text>
+      <view class='desc'>
+        <text>{{title}}</text>
+      </view>
+      <!-- <view class='btn' wx:if='{{used == 0 }}' catchtap='toUse'>去使用</view> -->
+    </view>
+    <text class='date'>有限期：{{usestarttime}} 至 {{useendtime}}</text>
+  </view>
+</template>
+
+<template name='getcoupon'>
+  <view class='coupon'>
+    <image src='/images/coupon_01.png'></image>
+    <view class='desc-wrapper'>
+      <text class='face-value'>{{price}}元</text>
+      <view class='desc'>
+        <text>{{title}}</text>
+      </view>
+      <view class='btn' catchtap='getCouponTap' data-couponid='{{id}}'>领取</view>
+    </view>
+    <text class='date'>有限期：{{usestarttime}} - {{useendtime}}</text>
+  </view>
+</template>
+
+<template name='choosecoupon'>
+  <view class='coupon' bindtap='chooseCouponTap' data-id='{{id}}'>
+    <image src='/images/coupon_01.png'></image>
+    <view class='desc-wrapper'>
+      <text class='face-value'>{{price}}元</text>
+      <view class='desc'>
+        <text>{{title}}</text>
+      </view>
+    </view>
+    <text class='date'>有限期：{{usestarttime}} - {{useendtime}}</text>
+  </view>
+</template>

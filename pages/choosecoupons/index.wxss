@@ -1,0 +1,2 @@
+/* pages/choosecoupons/index.wxss */
+@import '../template/coupon-tpl.wxss';

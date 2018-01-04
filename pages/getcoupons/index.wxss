@@ -1,0 +1,2 @@
+/* pages/getcoupons/index.wxss */
+@import '../template/coupon-tpl.wxss';

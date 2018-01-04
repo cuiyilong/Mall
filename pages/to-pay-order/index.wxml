@@ -32,22 +32,30 @@
       </view>
     </view>
     <view class="peisong-way">
-      <view class="row-box" wx:if="{{isNeedLogistics > 0}}">
+       <view class="row-box" wx:if="{{isNeedLogistics > 0}}">
         <view class="row-label">配送方式</view>
-        <view class="right-text" wx:if="{{yunPrice > 0}}">快递</view>
-        <view class="right-text" wx:if="{{yunPrice == 0}}">包邮</view>
-      </view>
+        <view class="right-text">包邮</view>
+      </view> 
       <view class="row-box">
         <view class="row-label">备注</view>
         <view class="right-text">
           <input name="remark" type="text" class="liuyan" placeholder="如需备注请输入" />
         </view>
       </view>
+      <view class="row-box">
+        <view class="row-label">优惠券</view>
+        <view class="right-text" wx:if='{{coupons.length == 0}}'>无可用优惠券</view>
+        <view class="right-text" wx:else  bindtap='chooseCouponTap' data-ids='{{ids}}' data-totalprice='{{allGoodsPrice}}'>
+          <text wx:if='{{couponPrice == 0}}'>{{coupons.length}}张可用</text>
+          <text class='text-red' wx:else>- {{couponPrice}} 元</text>
+          <image src='/images/arrow-right.png' class='arrow-right'></image>
+        </view>
+      </view>
     </view>
     
     <view class="jiesuan-box">
       <view class="left-price">
-        <view class="total">合计：¥ {{allGoodsPrice}}</view>
+        <view class="total">合计：¥ {{allGoodsPrice - couponPrice}}</view>
       </view>
       <button class="to-pay-btn" formType="submit">提交订单</button>
     </view>

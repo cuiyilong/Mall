@@ -1,52 +1,15 @@
-/* pages/list/list.wxss */
+/* pages/list/index.wxss */
 @import '../template/product-tpl.wxss';
 
-page {
-  height: 100%;
-}
-
-.list-container {
-  display: flex;
-}
-.nav-bar {
-  width: 149rpx;
-  background-color: #fff;
-  border-right: 1rpx solid #f2f2f2;
-}
-.nav-bar-item {
-  position: relative;
-  flex: 1;
-  padding: 40rpx 0;
-  box-sizing: border-box;
-  height: 40rpx;
-  text-align: center;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  color: #666;
-}
-.active {
-  color: #f56d02;
-}
- .nav-bar-item.active:after {
-  content: "";  
-  display: block;  
-  position: absolute;
-  top: 40rpx;
-  left: 0;
-  width: 6rpx;  
-  height: 40rpx;
-  background-color: #f56d02;
-} 
-
-.product-container {
-  flex: 1;
+.product-wrapper {
+  margin-top: 30rpx;
+  width: 100%;
   background-color: #fff;
 }
-
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  padding: 40rpx 30rpx;
+  justify-content: space-between;
+  padding: 40rpx;
   box-sizing: border-box;
 }
-

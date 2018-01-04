@@ -9,7 +9,11 @@ Page({
     allGoodsPrice: 0,
     orderType: "",  //  订单类型,默认是购物车
     addrs: [],
-    curAddressData: ''
+    curAddressData: '',
+    coupons: [], //所有可用优惠券
+    coupon: {},
+    couponPrice: 0,
+    ids: null
   },
 
   onLoad: function (e) {
@@ -22,6 +26,15 @@ Page({
   },
 
   onShow: function () {
+    // 获取当前选择优惠券
+    var coupon = wx.getStorageSync('coupon')
+    if (coupon) {
+      this.setData({
+        coupon: coupon,
+        couponPrice: coupon.price
+      })
+    }
+
     var that = this
     var shopList = []
     //立即购买下单
@@ -41,9 +54,10 @@ Page({
     }
     that.setData({
       goodsList: shopList
-    }) 
+    })
     that.initShippingAddress()
   },
+
   // 初始化地址信息
   initShippingAddress: function () {
     var that = this
@@ -69,7 +83,6 @@ Page({
   },
   // 计算订单总价
   totalPrice: function () {
-    var that = this
     var goodsList = this.data.goodsList
     var isNeedLogistics = 0
     var allGoodsPrice = 0
@@ -81,12 +94,53 @@ Page({
       }
       allGoodsPrice += carShopBean.goods.price * carShopBean.goods_num
     }
-    that.setData({
-      allGoodsPrice: allGoodsPrice.toFixed(2)
+    allGoodsPrice = allGoodsPrice.toFixed(2)
+    this.setData({
+      allGoodsPrice: allGoodsPrice
+    })
+
+    this.getCoupons()
+  },
+
+  // 获取优惠券信息
+  getCoupons: function (e) {
+    var templist = this.data.goodsList
+    var temp = []
+    for (let i = 0; i < templist.length; i++) {
+      let curItem = templist[i]
+      temp.push(curItem.goods_id)
+    }
+    temp = temp.toString()
+    this.setData({
+      ids: temp
+    })
+    wx.request({
+      url: app.globalData.url + 'orderCoupons',
+      data: {
+        mid: app.globalData.userInfo.mid,
+        ids: temp,
+        total: this.data.allGoodsPrice
+      },
+      success: (res) => {
+        this.setData({
+          coupons: res.data,
+          // couponPrice: res.data[0].price
+        })
+      }
     })
   },
+
+  chooseCouponTap: function (e) {
+    var ids = e.currentTarget.dataset.ids
+    var totalprice = e.currentTarget.dataset.totalprice
+    wx.navigateTo({
+      url: '/pages/choosecoupons/index?ids=' + ids + '&totalprice=' + totalprice,
+    })
+  },
+
   // 提交订单
   createOrder: function (e) {
+
     wx.showLoading()
     var that = this
     var remark = ""
@@ -95,8 +149,10 @@ Page({
     }
     var postData = {
       mid: app.globalData.userInfo.mid,
-      total: this.data.allGoodsPrice,
+      total: this.data.allGoodsPrice - this.data.couponPrice,
       remarks: remark,
+      coupon: this.data.coupons[0].id ? this.data.coupons[0].id : '',
+      bonus: this.data.coupons[0].title ? this.data.coupons[0].title : ''
     }
     if (that.data.isNeedLogistics > 0) {
       if (!that.data.curAddressData) {
@@ -109,14 +165,16 @@ Page({
         return
       }
 
-      var goodslist = this.data.goodsList   
+      var goodslist = this.data.goodsList
+      // console.log(goodslist)
       var templist = []
       for (var idx in goodslist) {
         var obj = goodslist[idx]
         var temp = {
           id: obj.goods_id,
           price: obj.goods.price,
-          num: obj.goods_num
+          num: obj.goods_num,
+          name: obj.title
         }
         templist.push(temp)
       }
@@ -135,7 +193,7 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: postData,
       success: (res) => {
-        wx.hideLoading()    
+        wx.hideLoading()
         if (res.data.code == 1) {
           // 微信支付
           var out_trade_no = res.data.order.order_id
@@ -200,5 +258,13 @@ Page({
     wx.navigateTo({
       url: "/pages/address/index"
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    // 清空当前选中优惠券缓存，防止其他商品下单购物券错误
+    wx.removeStorageSync('coupon')
   }
 })

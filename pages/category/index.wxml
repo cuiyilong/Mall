@@ -1,0 +1,25 @@
+<!--pages/list/list.wxml-->
+<import src="../template/product-tpl.wxml" />
+
+<view class='list-container'>
+  <scroll-view scroll-y style='height: {{scrollHight}}rpx' class='nav-bar'>
+    <block wx:for="{{category}}" wx:for-item="item">
+      <view class="nav-bar-item {{currentType == item.id ? 'active' : ''}}" wx:if='{{item.level == 1}}' data-id="{{item.id}}" catchtap='onNavBarTap'>{{item.name}}</view>
+    </block>
+  </scroll-view>
+
+  <scroll-view scroll-y style='height: {{scrollHight}}rpx' class='right' scroll-into-view="{{toView}}" scroll-with-animation='ture'>
+    <view class='category-wrapper'>
+      <block wx:for="{{category}}" wx:for-item="item">
+        <view wx:if='{{item.level == 1}}' class='category-title' id='category{{item.id}}'>
+          <image src='{{item.pic}}'></image>
+          <text>- {{item.name}} -</text>
+        </view>
+        <view wx:else class='category' catchtap='toListTap' data-id="{{item.id}}" data-title='{{item.name}}'>
+          <image src='{{item.pic}}'></image>
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

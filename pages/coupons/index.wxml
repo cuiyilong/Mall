@@ -1,44 +1,28 @@
 <!--pages/coupons/index.wxml-->
+<import src='../template/coupon-tpl.wxml' />
+
 <view class='container'>
   <view class='nav-bar'>
     <view class="nav-bar-item {{currentType==index ? 'active' : ''}}" wx:for="{{statusType}}" wx:for-item="item" data-index="{{index}}" catchtap='onNavBarTap'>{{item}}</view>
   </view>
 
-  <view class='coupons'>
-    <view class='coupon'>
-      <image src='/images/coupon_01.png'></image>
-      <view class='desc-wrapper'>
-        <text class='face-value'>30元</text>
-        <view class='desc'>
-          <text>满200减30</text>
-          <text>限元旦当天使用</text>
-        </view>
-      </view>
-      <text class='date'>有限期：2017.12.28 - 2018.01.01</text>
+  <block wx:if='{{coupons.length == 0}}'>
+    <view class='no-coupons'>
+      <image src='/images/no-coupon.png'></image>
+      <text>无优惠券</text>
     </view>
+  </block>
 
-    <view class='coupon'>
-      <image src='/images/coupon_02.png'></image>
-      <view class='desc-wrapper'>
-        <text class='face-value'>30元</text>
-        <view class='desc'>
-          <text>满200减30</text>
-          <text>限元旦当天使用</text>
-        </view>
-      </view>
-      <text class='date'>有限期：2017.12.28 - 2018.01.01</text>
+  <block wx:else>
+    <view class='coupons'>
+      <block wx:for='{{coupons}}' wx:for-item='item'>
+        <template is='coupon' data='{{...item}}' />
+      </block>
     </view>
+  </block>
 
-    <view class='coupon'>
-      <image src='/images/coupon_03.png'></image>
-      <view class='desc-wrapper'>
-        <text class='face-value'>30元</text>
-        <view class='desc'>
-          <text>满200减30</text>
-          <text>限元旦当天使用</text>
-        </view>
-      </view>
-      <text class='date'>有限期：2017.12.28 - 2018.01.01</text>
-    </view>
+  <view class='getcoupon' bindtap='onGetCouponTap'>
+    <image src='/images/getcoupon.png'></image>
+    <text>领券</text>
   </view>
 </view>

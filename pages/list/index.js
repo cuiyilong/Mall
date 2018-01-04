@@ -1,7 +1,6 @@
-// pages/list/list.js
+// pages/list/index.js
 const app = getApp()
 var goodListUrl = app.globalData.url + 'goodsList'
-var CategoryUrl = app.globalData.url + 'goodsCategory'
 
 Page({
 
@@ -9,52 +8,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    category: [],
-    currentType: 0,
-    pagesize: 15,
-    goodList: [],
-    scrollHight: null
+    pagesize: 6,
+    goodList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var res = wx.getSystemInfoSync().windowWidth
-    var scrollHight = Math.floor(750 / res * wx.getSystemInfoSync().windowHeight)
+    var cid = options.id
+    var title = options.title
     this.setData({
-      scrollHight: scrollHight
+      cid: cid
     })
-    this.getCategory()
-  },
-
-  getCategory: function () {
-    wx.request({
-      url: CategoryUrl,
-      data: {},
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        var category = []
-        for(let idx in res.data) {
-          var obj = res.data[idx]
-          if (obj.level == 1) {
-            var temp= {
-              id: obj.id,
-              name: obj.name 
-            }
-            category.push(temp)
-          }
-        }
-       
-        this.setData({
-          category: category,
-          currentType: category[0].id
-        })
-        this.http(goodListUrl, this.data.currentType, this.data.pagesize, this.goodList)
-      }
+    wx.setNavigationBarTitle({
+      title: title,
     })
+    this.http(goodListUrl, cid, this.data.pagesize, this.goodList)
   },
 
   http: function (url, cid, pagesize, callback) {
@@ -74,9 +44,8 @@ Page({
   },
 
   goodList: function (data) {
-    wx.hideLoading()
     wx.hideNavigationBarLoading()
-    var pagesize = this.data.pagesize + 15
+    var pagesize = this.data.pagesize + 6
     if (data.length != 0) {
       this.setData({
         pagesize: pagesize,
@@ -88,16 +57,6 @@ Page({
         goodList: data
       })
     }
-  },
-
-  onNavBarTap: function (e) {
-    wx.showLoading()
-    var idx = e.currentTarget.dataset.index
-    this.setData({
-      currentType: idx,
-      pagesize: 15
-    })
-    this.http(goodListUrl, this.data.currentType, this.data.pagesize, this.goodList)
   },
 
   toDetailsTap: function (e) {
@@ -147,7 +106,7 @@ Page({
    */
   onReachBottom: function () {
     wx.showNavigationBarLoading()
-    this.http(goodListUrl, this.data.currentType, this.data.pagesize, this.goodList)
+    this.http(goodListUrl, this.data.cid, this.data.pagesize, this.goodList)
   },
 
   /**

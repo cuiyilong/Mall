@@ -1,0 +1,10 @@
+<!--pages/getcoupons/index.wxml-->
+<import src='../template/coupon-tpl.wxml' />
+
+<view class='container'>
+  <view class='coupons'>
+    <block wx:for='{{coupons}}' wx:for-item='item'>
+      <template is='getcoupon' data='{{...item}}' />
+    </block>
+  </view>
+</view>

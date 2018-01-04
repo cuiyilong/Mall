@@ -158,7 +158,13 @@ form {
 .peisong-way .right-text {
   font-size: 28rpx;
   color: #666;
-  padding-right: 30rpx;
+}
+
+.peisong-way .text-red {
+  color: #e64340;
+}
+.peisong-way .arrow-right {
+  margin-left: 15rpx;
 }
 
 .peisong-way .liuyan {

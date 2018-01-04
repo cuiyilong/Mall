@@ -1,4 +1,6 @@
 /* pages/coupons/index.wxss */
+@import "../template/coupon-tpl.wxss";
+
 .nav-bar {
   position: fixed;
   top: 0;
@@ -26,56 +28,51 @@
   position: absolute;  
   bottom: -1rpx; 
   left: 50%;
-  margin-left: -30rpx; 
-  width: 60rpx;
+  margin-left: -25rpx; 
+  width: 50rpx;
   height: 4rpx;  
   background: #f56d02; 
 }
 
-.coupons {
-  margin-top: 100rpx;
-}
-.coupon {
-  position: relative;
-  margin: 20rpx 40rpx;
-  padding: 0 60rpx;
-  box-sizing: border-box;
-  width: 670rpx;
-  height: 210rpx;
-  color: #fff;
-}
-.coupon image {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 670rpx;
-  height: 210rpx;
-  z-index: -1;
-}
-.coupon .desc-wrapper {
-  display: flex;
-  align-items: center;
-  /* padding-top: 60rpx;
-  box-sizing: border-box; */
-  height: 155rpx;
-}
-.face-value {
-  display: block;
-  height: 80rpx;
-  font-size: 60rpx;
-}
-.desc {
+.no-coupons {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30rpx;
-  height: 80rpx;
+  align-items: center;
+  margin-top: 300rpx;
+  width: 200rpx;
+  color: #c4c4c4;
+  font-size: 28rpx;
 }
-.desc text {
-  display: block;
-  font-size: 24rpx;
-  line-height: 30rpx;
+.no-coupons image{
+  margin-bottom: 15rpx;
+  width: 184rpx;
+  height: 137rpx;
 }
-.date {
-  font-size: 24rpx;
+
+.coupons {
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+}
+
+.getcoupon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;   
+  justify-content: center;  
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  background: #fff;
+}
+.getcoupon image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.getcoupon text {
+  margin-left: 15rpx;
+  font-size: 32rpx;
+  line-height: 60rpx;
+  color: #f56d02;
 }

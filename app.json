@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/category/index",
     "pages/list/index",
     "pages/shopcart/index",
     "pages/user/index",
@@ -9,6 +10,8 @@
     "pages/more-rating/index",
     "pages/orders/index",
     "pages/coupons/index",
+    "pages/choosecoupons/index",
+    "pages/getcoupons/index",
     "pages/orders-detail/index",
     "pages/to-pay-order/index",
     "pages/address/index",
@@ -31,7 +34,7 @@
         "selectedIconPath": "images/tabbar/home-on.png"
       },
       {
-        "pagePath": "pages/list/index",
+        "pagePath": "pages/category/index",
         "text": "分类",
         "iconPath": "images/tabbar/list.png",
         "selectedIconPath": "images/tabbar/list-on.png"

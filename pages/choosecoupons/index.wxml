@@ -1,0 +1,10 @@
+<!--pages/choosecoupons/index.wxml-->
+<import src='../template/coupon-tpl.wxml' />
+
+<view class='container'>
+  <view class='coupons'>
+    <block wx:for='{{coupons}}' wx:for-item='item'>
+      <template is='choosecoupon' data='{{...item}}' />
+    </block>
+  </view>
+</view>
