@@ -18,21 +18,21 @@
   </swiper>
 
   <view class='list-wrapper'>
-    <view class='list-item' data-cid='0' data-category='专题1' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='0' data-category='推荐' bindtap='onTopicTap'>
       <image src='/images/icon-1.png'></image>
-      <text>专题1</text>
+      <text>推荐</text>
     </view>
-    <view class='list-item' data-cid='1' data-category='专题2' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='1' data-category='热门' bindtap='onTopicTap'>
       <image src='/images/icon-2.png'></image>
-      <text>专题2</text>
+      <text>热门</text>
     </view>
-    <view class='list-item' data-cid='2' data-category='专题3' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='2' data-category='优选' bindtap='onTopicTap'>
       <image src='/images/icon-3.png'></image>
-      <text>专题3</text>
+      <text>优选</text>
     </view>
-    <view class='list-item' data-cid='3' data-category='专题4' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='3' data-category='发现' bindtap='onTopicTap'>
       <image src='/images/icon-4.png'></image>
-      <text>专题4</text>
+      <text>发现</text>
     </view>
   </view>
 

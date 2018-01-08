@@ -1,2 +1,18 @@
 /* pages/getcoupons/index.wxss */
 @import '../template/coupon-tpl.wxss';
+
+.no-coupons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300rpx;
+  width: 200rpx;
+  color: #c4c4c4;
+  font-size: 28rpx;
+}
+.no-coupons image{
+  margin-bottom: 15rpx;
+  width: 184rpx;
+  height: 137rpx;
+}

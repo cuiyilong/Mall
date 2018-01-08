@@ -1,10 +1,24 @@
 @import "/wxParse/wxParse.wxss";
 @import "../template/rating-tpl.wxss";
 
-.container {
+Page {
+  position: absolute;
+  font-size: 36rpx;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #FAFAFA;
+  overflow-y: hidden;
+}
+.scroll-view {
+  height: 100%;
   padding-bottom: 100rpx;
   box-sizing: border-box;
 }
+/* .container {
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+} */
 
 .swiper-container {
   width: 100%;
@@ -98,6 +112,7 @@
   height: 100rpx;
   background-color: #fff;
   box-shadow:0 2rpx 5rpx #ccc;
+  z-index: 3;
 }
 .btn-wrapper {
   display: flex;
@@ -164,6 +179,11 @@
   background-color: #e64340;
   color:#fff;
 }
+
+.overflowy {
+  overflow-y: hidden
+}
+
 .show-popup{
   position: fixed;
   top: 0;

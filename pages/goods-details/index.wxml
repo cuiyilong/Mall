@@ -1,7 +1,7 @@
 <import src="../../wxParse/wxParse.wxml" />
 <import src="../template/rating-tpl.wxml" />
 
-<view class="container">
+<scroll-view scroll-y="{{hideShopPopup}}" class="scroll-view">
   <swiper class="swiper-container" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#ffffff" indicator-active-color='#ccc'>
     <block wx:for="{{goodsDetail.photo}}" wx:for-item='item' wx:key="id">
       <swiper-item>
@@ -41,7 +41,9 @@
     </block>
   </view>
 
-  <view class="footer-box">
+</scroll-view>
+
+<view class="footer-box">
     <view class='btn-wrapper'>
       <view class="contact">
         <button open-type="contact" class='contact-btn'></button>
@@ -97,4 +99,3 @@
       <view class="popup-join-btn" wx:if="{{shopType =='tobuy'}}" bindtap="buyNow">立即购买</view>
     </view>
   </view>
-</view>

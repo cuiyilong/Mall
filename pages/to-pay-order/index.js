@@ -28,6 +28,7 @@ Page({
   onShow: function () {
     // 获取当前选择优惠券
     var coupon = wx.getStorageSync('coupon')
+    // console.log(coupon)
     if (coupon) {
       this.setData({
         coupon: coupon,
@@ -141,7 +142,10 @@ Page({
   // 提交订单
   createOrder: function (e) {
 
-    wx.showLoading()
+    wx.showLoading({
+      title: '加载中...'
+    })
+
     var that = this
     var remark = ""
     if (e) {
@@ -151,8 +155,8 @@ Page({
       mid: app.globalData.userInfo.mid,
       total: this.data.allGoodsPrice - this.data.couponPrice,
       remarks: remark,
-      coupon: this.data.coupons[0].id ? this.data.coupons[0].id : '',
-      bonus: this.data.coupons[0].title ? this.data.coupons[0].title : ''
+      coupon: this.data.coupon.id ? this.data.coupon.id : '',
+      bonus: this.data.coupon.title ? this.data.coupon.title : ''
     }
     if (that.data.isNeedLogistics > 0) {
       if (!that.data.curAddressData) {

@@ -2,9 +2,18 @@
 <import src='../template/coupon-tpl.wxml' />
 
 <view class='container'>
-  <view class='coupons'>
-    <block wx:for='{{coupons}}' wx:for-item='item'>
-      <template is='getcoupon' data='{{...item}}' />
-    </block>
-  </view>
+  <block wx:if='{{coupons.length == 0}}'>
+    <view class='no-coupons'>
+      <image src='/images/no-coupon.png'></image>
+      <text>暂无可领优惠券</text>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class='coupons'>
+      <block wx:for='{{coupons}}' wx:for-item='item'>
+        <template is='getcoupon' data='{{...item}}' />
+      </block>
+    </view>
+  </block>
 </view>

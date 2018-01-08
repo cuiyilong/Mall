@@ -22,7 +22,9 @@ Page({
   },
 
   showOrderList: function (idx, pagesize) {
-    wx.showLoading()
+    wx.showLoading({
+      title: '加载中...',
+    })
     var status = ''
     if (idx == 0) {
       status = '-1,1,2,3,4'

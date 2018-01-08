@@ -18,12 +18,16 @@ Page({
   },
 
   initShippingAddress: function () {
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.request({
       url: app.globalData.url + 'listAddress',
       data: {
         mid: app.globalData.userInfo.mid
       },
       success: (res) => {
+        wx.hideLoading()
         this.setData({
           addressList: res.data
         })

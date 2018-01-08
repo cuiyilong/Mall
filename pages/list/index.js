@@ -16,6 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...'
+    })
     var cid = options.id
     var title = options.title
     this.setData({
@@ -44,6 +47,7 @@ Page({
   },
 
   goodList: function (data) {
+    wx.hideLoading()
     wx.hideNavigationBarLoading()
     var pagesize = this.data.pagesize + 6
     if (data.length != 0) {

@@ -1,5 +1,6 @@
 // pages/user/user.js
 const app = getApp()
+var WxParse = require('../../wxParse/wxParse.js')
 
 Page({
 
@@ -10,7 +11,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     avatarDefault: '/images/avatar-default.png',
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    about: ''
   },
 
   /**
@@ -25,6 +27,19 @@ Page({
     } else {
       app.relateUser(this.getUserinfo)
     }
+
+    wx.request({
+      url: app.globalData.url + 'detail',
+      data: {
+        parent_id: 6,
+        id: 1
+      },
+      success: (res) => {
+        this.setData({
+          about: res.data.name
+        })
+      }
+    })
   },
 
   login: function (e) {
@@ -83,7 +98,7 @@ Page({
   onAboutTap: function () {
     wx.showModal({
       title: '关于我们',
-      content: '华邦商城V1.0！',
+      content: this.data.about,
       showCancel: false
     })
   },

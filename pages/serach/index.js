@@ -21,7 +21,10 @@ Page({
   onSerachTap: function (e) {
     var key = e.detail.value
     if (key != '') {
-      wx.showLoading()
+      wx.showLoading({
+        title: '加载中...'
+      })
+      
       wx.request({
         url: app.globalData.url + 'searchGoods',
         data: {

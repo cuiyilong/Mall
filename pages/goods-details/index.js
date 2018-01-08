@@ -1,6 +1,6 @@
 //index.js
-var util = require('../../utils/util.js')
 var app = getApp()
+var util = require('../../utils/util.js')
 var WxParse = require('../../wxParse/wxParse.js')
 
 Page({
@@ -198,7 +198,7 @@ Page({
         }
       }
     }
-    console.log(attrs)
+    // console.log(attrs)
     wx.request({
       url: app.globalData.url + 'checkAttrs',
       data: {
@@ -381,6 +381,7 @@ Page({
     var buyNowInfo = shopCarMap
     return buyNowInfo
   },
+
   onShareAppMessage: function () {
     return {
       title: this.data.goodsDetail.title,

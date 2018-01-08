@@ -4,7 +4,7 @@
 }
 .product image {
   width: 320rpx;
-  height: 268rpx;
+  height: 320rpx;
 }
 .product .name {
   display: block;

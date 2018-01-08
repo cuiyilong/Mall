@@ -40,7 +40,9 @@ Page({
     }
     if (id) {
       // 初始化原数据
-      wx.showLoading()
+      wx.showLoading({
+        title: '加载中...'
+      })
       wx.request({
         url: app.globalData.url + 'listAddress',
         data: {

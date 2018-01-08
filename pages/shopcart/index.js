@@ -346,7 +346,10 @@ Page({
   },
   // 结算
   toPayOrder: function () {
-    wx.showLoading()
+    wx.showLoading({
+      title: '加载中...'
+    })
+    
     if (this.data.noSelect) {
       wx.hideLoading()
       return
