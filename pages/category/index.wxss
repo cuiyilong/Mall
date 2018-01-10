@@ -12,7 +12,7 @@ page {
   flex-shrink: 0;
   width: 149rpx;
   background-color: #fff;
-  border-right: 1rpx solid #f2f2f2;
+  border-right: 1rpx solid #eee;
 }
 .nav-bar-item {
   position: relative;
@@ -44,9 +44,14 @@ page {
   width: 600rpx;
   background-color: #fff;
 }
+/* 去除滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .category-wrapper {
-  display: flex;
-  flex-wrap: wrap;
   padding: 0 30rpx;
   box-sizing: border-box;
 }
@@ -67,6 +72,11 @@ page {
   margin-top: 15rpx;
   font-size: 28rpx;
   color: #999;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap; 
 }
 
 .category {

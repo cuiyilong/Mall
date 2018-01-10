@@ -27,7 +27,7 @@ Page({
     } else {
       app.relateUser(this.getUserinfo)
     }
-
+    
     wx.request({
       url: app.globalData.url + 'detail',
       data: {
@@ -41,7 +41,7 @@ Page({
       }
     })
   },
-
+  // 首次取消授权，再次拉取授权
   login: function (e) {
     app.relateUser(this.getUserinfo)
   },

@@ -54,7 +54,7 @@ Page({
           buyNumMax: res.data.stock,
           buyNumber: (res.data.stock > 0) ? 1 : 0
         })
-        WxParse.wxParse('article', 'html', res.data.content, this, 5)
+        WxParse.wxParse('article', 'html', res.data.content, this)
       }
     })
     // 获取评论

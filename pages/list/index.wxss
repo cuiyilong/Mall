@@ -1,15 +1,78 @@
 /* pages/list/index.wxss */
 @import '../template/product-tpl.wxss';
 
-.product-wrapper {
-  margin-top: 30rpx;
-  width: 100%;
-  background-color: #fff;
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 92rpx;
+  background-color: #fff;  
+  box-shadow: 0 1rpx 5rpx #dcdcdc;
+  z-index: 9;
 }
+.nav-bar-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.nav-bar-item {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+}
+.active {
+  color: #f56d02;
+}
+.nav-bar-item.active:after {
+  content: "";  
+  display: block;  
+  position: absolute;  
+  bottom: -1rpx; 
+  left: 50%;
+  margin-left: -25rpx; 
+  width: 50rpx;
+  height: 4rpx;  
+  background: #f56d02;  
+}
+
+.tab-content {
+  width: 100%;
+}
+
+.scoll-h {
+  padding-top: 92rpx;
+  box-sizing: border-box;
+  width: 100%;
+}  
+/* 去除滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.tip {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  color: #999;
+  /* background-color: #f3f3f3; */
+}
+
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 40rpx;
   box-sizing: border-box;
+  min-height: 1060rpx;
+  background-color: #fff;
 }

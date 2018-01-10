@@ -19,12 +19,10 @@ Page({
 
   onLoad: function () {
     this.http(bannerUrl, '', '', this.bannerData)
-    this.http(goodListUrl, this.data.cid, this.data.pagesize, this.goodList)
+    this.http(goodListUrl, '58,59', this.data.pagesize, this.goodList1)
+    this.http(goodListUrl, '15,16,17,20,21', this.data.pagesize, this.goodList2)
   },
   http: function (url, cid, pagesize, callback) {
-    if (cid == 0) {
-      cid = ''
-    }
     wx.request({
       url: url,
       data: {
@@ -39,13 +37,14 @@ Page({
       }
     })
   },
-  goodList: function (data) {
-    wx.hideLoading()
-    wx.hideNavigationBarLoading()
-    var pagesize = this.data.pagesize + 8
+  goodList1: function (data) {
     this.setData({
-      pagesize: pagesize,
-      goodList: data
+      goodList1: data
+    })
+  },
+  goodList2: function (data) {
+    this.setData({
+      goodList2: data
     })
   },
   bannerData: function (data) {

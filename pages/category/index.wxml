@@ -2,24 +2,24 @@
 <import src="../template/product-tpl.wxml" />
 
 <view class='list-container'>
-  <scroll-view scroll-y style='height: {{scrollHight}}rpx' class='nav-bar'>
-    <block wx:for="{{category}}" wx:for-item="item">
-      <view class="nav-bar-item {{currentType == item.id ? 'active' : ''}}" wx:if='{{item.level == 1}}' data-id="{{item.id}}" catchtap='onNavBarTap'>{{item.name}}</view>
+  <scroll-view scroll-y style='height: {{scrollHight}}px' class='nav-bar'>
+    <block wx:for="{{category}}" wx:for-item="item" wx:for-index="idx">
+      <view class="nav-bar-item {{currentType == idx ? 'active' : ''}}" data-idx="{{idx}}" catchtap='onNavBarTap'>{{item.name}}</view>
     </block>
   </scroll-view>
 
-  <scroll-view scroll-y style='height: {{scrollHight}}rpx' class='right' scroll-into-view="{{toView}}" scroll-with-animation='ture'>
-    <view class='category-wrapper'>
-      <block wx:for="{{category}}" wx:for-item="item">
-        <view wx:if='{{item.level == 1}}' class='category-title' id='category{{item.id}}'>
-          <image src='{{item.pic}}'></image>
-          <text>- {{item.name}} -</text>
+  <scroll-view scroll-y style='height: {{scrollHight}}px' class='right' bindscroll="scroll" scroll-into-view="{{toView}}" scroll-with-animation='ture'>
+    <view class='category-wrapper' style='height: {{scrollHight}}px' wx:for="{{category}}" wx:for-item="item" wx:for-index="idx">
+      <view class='category-title' id='category{{idx}}'>
+        <image src='{{item.pic}}'></image>
+        <text>- {{item.name}} -</text>
+      </view>
+      <view class='category-list'>
+        <view class='category' wx:for="{{item.list}}" wx:for-item="list" wx:for-index="cidx" catchtap='toListTap'  data-idx='{{idx}}' data-cidx="{{cidx}}">
+          <image src='{{list.pic}}'></image>
+          <text>{{list.name}}</text>
         </view>
-        <view wx:else class='category' catchtap='toListTap' data-id="{{item.id}}" data-title='{{item.name}}'>
-          <image src='{{item.pic}}'></image>
-          <text>{{item.name}}</text>
-        </view>
-      </block>
+      </view>
     </view>
   </scroll-view>
 </view>

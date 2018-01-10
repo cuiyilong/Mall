@@ -325,10 +325,15 @@ Page {
   color: #333;
   border-bottom:1px solid #eee;
 }
-.reating-num {
+.tit {
   flex: 1;
-  color: red;
+  color: #666;
 }
 .more {
-  color: #666;
+  color: red;
+}
+.label-title .arrow-right {
+  margin-left: 15rpx;
+  width: 16rpx;
+  height: 24rpx;
 }

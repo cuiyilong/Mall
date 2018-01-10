@@ -1,14 +1,25 @@
 <!--pages/list/index.wxml-->
 <import src="../template/product-tpl.wxml" />
 
-<view class='container'>
-  <view class='product-wrapper'>
-    <view class='product-list'>
-      <block wx:for='{{goodList}}' wx:for-item='item'>
-        <view catchtap='toDetailsTap' data-id="{{item.id}}">
-          <template is='product' data='{{...item}}' />
-        </view>
-      </block>
+<view>
+  <scroll-view class='nav-bar' scroll-x style="width: 100%" scroll-left="{{scrollLeft}}" scroll-with-animation='ture'>
+    <view class='nav-bar-wrapper'>
+      <view class="nav-bar-item {{currentType == index ? 'active' : ''}}" wx:for="{{category.list}}" wx:for-item="item" wx:for-index="index" data-id='{{item.id}}' data-idx="{{index}}" catchtap='onNavBarTap'>{{item.name}}</view>
     </view>
-  </view>
+  </scroll-view>
+
+  <swiper class="tab-content" style='height:{{scrollHight}}px' current="{{currentType}}" duration="600" bindchange="switchTab">
+    <swiper-item class="swiper-item" wx:for="{{category.list}}" wx:for-index='idx'>
+      <scroll-view scroll-y style='height:{{scrollHight}}px' class="scoll-h" bindscrolltolower="onReachBottom">
+        <view class='product-list'>
+          <block wx:for='{{goodList[idx]}}' wx:for-item='item'>
+            <view catchtap='toDetailsTap' data-id="{{item.id}}">
+              <template is='product' data='{{...item}}' />
+            </view>
+          </block>
+        </view>
+        <view class='tip'>横向滑动切换分类</view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
 </view>

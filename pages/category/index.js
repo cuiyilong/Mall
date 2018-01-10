@@ -10,18 +10,21 @@ Page({
   data: {
     category: [],
     currentType: 0,
+    res: 0,
     scrollHight: null,
-    arr: [],
-    toView: 'category1'
+    toView: 'category1',
+    heightArr: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var res = wx.getSystemInfoSync().windowWidth
-    var scrollHight = Math.floor(750 / res * wx.getSystemInfoSync().windowHeight)
+    // var res = wx.getSystemInfoSync().windowWidth
+    // var scrollHight = Math.floor(750 / res * wx.getSystemInfoSync().windowHeight)
+    var scrollHight = wx.getSystemInfoSync().windowHeight
     this.setData({
+      // res: res,
       scrollHight: scrollHight
     })
     this.getCategory()
@@ -35,45 +38,70 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
+        var temp = res.data
         var category = []
-        // for(let idx in res.data) {
-        //   var obj = res.data[idx]
-        //   if (obj.level == 1) {
-        //     var temp= {
-        //       id: obj.id,
-        //       name: obj.name, 
-        //       pic: obj.pic
-        //     }
-        //     category.push(temp)
-        //   }
-        // }
-        // console.log(category)
-        // this.setData({
-        //   category: category,
-        //   currentType: category[0].id
-        // })
+        var index = 0
+        var obj = null
+        for (let i = 0; i < temp.length; i++) {
+          if (temp[i].level === 1) {
+            index = i
+            obj = temp[index]
+            obj.list = []
+          } else {
+            obj.list.push(temp[i])
+          }
+        }
+        category = temp.filter(function (cur) {
+          return cur.level === 1
+        })
+
+        // 计算右边分类数组区间
+        var heigth = 0
+        var heightArr = []
+        heightArr.push(heigth)
+        for (let i = 0; i < category.length; i++) {
+          heigth = this.data.scrollHight * (i + 1)
+          heightArr.push(heigth)
+        }
 
         this.setData({
-          category: res.data,
-          currentType: res.data[0].id
+          category: category,
+          heightArr: heightArr
         })
       }
     })
   },
 
   onNavBarTap: function (e) {
-    var id = e.currentTarget.dataset.id
+    var idx = e.currentTarget.dataset.idx
     this.setData({
-      currentType: id,
-      toView: 'category' + id
+      currentType: idx,
+      toView: 'category' + idx
     })
   },
 
+  scroll: function (e) {
+    // var scrollTop = Math.floor(750 / this.data.res * e.detail.scrollTop)
+    // console.log(scrollTop)
+    var scrollTop = e.detail.scrollTop
+    // 一级菜单和二级菜单联动
+    for (let i = 0; i < this.data.category.length; i++) {
+      let heightUp = this.data.heightArr[i]
+      let heightDown = this.data.heightArr[i + 1]
+      if (!heightDown || scrollTop >= heightUp && scrollTop < heightDown) {
+        this.setData({
+          currentType: i
+        })
+      }
+    }
+  },
+
   toListTap: function (e) {
-    var id = e.currentTarget.dataset.id
-    var title = e.currentTarget.dataset.title
+    // console.log(e)
+    var idx = e.currentTarget.dataset.idx
+    var cidx = e.currentTarget.dataset.cidx
     wx.navigateTo({
-      url: '../list/index?id=' + id + '&title=' + title
+      url: '../list/index?idx=' + idx + '&cidx=' + cidx
     })
   },
 
@@ -81,35 +109,35 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
@@ -123,6 +151,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

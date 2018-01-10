@@ -22,15 +22,15 @@
       <image src='/images/icon-1.png'></image>
       <text>推荐</text>
     </view>
-    <view class='list-item' data-cid='1' data-category='热门' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='24,33,59' data-category='热门' bindtap='onTopicTap'>
       <image src='/images/icon-2.png'></image>
       <text>热门</text>
     </view>
-    <view class='list-item' data-cid='2' data-category='优选' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='26,27,28' data-category='优选' bindtap='onTopicTap'>
       <image src='/images/icon-3.png'></image>
       <text>优选</text>
     </view>
-    <view class='list-item' data-cid='3' data-category='发现' bindtap='onTopicTap'>
+    <view class='list-item' data-cid='33,34' data-category='发现' bindtap='onTopicTap'>
       <image src='/images/icon-4.png'></image>
       <text>发现</text>
     </view>
@@ -45,7 +45,7 @@
     <text class='heading'>数码3C</text>
     <image class='category-img' src='/images/images_08.jpg'></image>
     <view class='product-list'>
-      <block wx:for='{{goodList}}' wx:for-item='item'>
+      <block wx:for='{{goodList1}}' wx:for-item='item'>
         <view catchtap='toDetailsTap' data-id="{{item.id}}">
           <template is='product' data='{{...item}}' />
         </view>
@@ -55,9 +55,9 @@
 
   <view class='product-wrapper'>
     <text class='heading'>手机</text>
-    <image class='category-img' src='/images/images_15.jpg'></image>
+    <image class='category-img' src='/images/images_15.png'></image>
     <view class='product-list'>
-      <block wx:for='{{goodList}}' wx:for-item='item'>
+      <block wx:for='{{goodList2}}' wx:for-item='item'>
         <view catchtap='toDetailsTap' data-id="{{item.id}}">
           <template is='product' data='{{...item}}' />
         </view>

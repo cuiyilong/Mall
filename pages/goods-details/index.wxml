@@ -15,7 +15,7 @@
     <view class='sales'>
       <view class="goods-price">¥ {{goodsDetail.price}}</view>
       <view class="goods-sales">销量 {{goodsDetail.sales}}</view>
-      <view class="goods-rating">评价 {{reputation.total}}</view>
+      <view class="goods-rating">评分 {{goodsDetail.score}}</view>
     </view>
   </view>
 
@@ -32,9 +32,12 @@
   </view>
 
   <view class="rating-wrapper" wx:if="{{reputation.total != 0}}">
-    <view class="label-title">评价
-      <text class='reating-num'>（{{reputation.total}}）</text>
-      <text class='more' bindtap='onMoreRatingTap' data-id='{{goodsDetail.id}}'>更多></text>
+    <view class="label-title">
+      <text class='tit'>评价</text>
+      <view class='more' bindtap='onMoreRatingTap' data-id='{{goodsDetail.id}}'>
+        <text>{{reputation.total}} 条评价</text>
+        <image src='/images/arrow-right.png' class='arrow-right'></image>
+      </view>
     </view>
     <block wx:for='{{ratings}}' wx:for-item='item' wx:for-index='idx'>
       <template is='rating' data='{{...item}}' />

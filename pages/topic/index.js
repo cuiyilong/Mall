@@ -22,8 +22,9 @@ Page({
     })
     var cid = options.cid
     var category = options.category
+
     wx.setNavigationBarTitle({
-      title: category,
+      title: category
     })
     this.setData({
       cid: cid
