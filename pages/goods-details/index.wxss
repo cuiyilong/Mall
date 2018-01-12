@@ -89,12 +89,12 @@ Page {
   padding: 30rpx;
 }
 .goods-text{
-  margin-top: 30rpx;
-  padding: 0 30rpx;
-  font-size:28rpx;
+  /* padding: 20rpx 0 0;
+  box-sizing: border-box; */
+  width: 100%;
   color:#666666;
-  line-height: 56rpx;
-  margin-bottom: 30rpx;
+  line-height: 0; 
+  overflow: hidden;
 }
 .des-imgs{
   width:100%;

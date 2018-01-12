@@ -10,10 +10,10 @@ Page({
   data: {
     category: [],
     currentType: 0,
-    res: 0,
     scrollHight: null,
-    toView: 'category1',
-    heightArr: []
+    // toView: 'category1',
+    // heightArr: [],
+    top: 0
   },
 
   /**
@@ -22,6 +22,7 @@ Page({
   onLoad: function (options) {
     // var res = wx.getSystemInfoSync().windowWidth
     // var scrollHight = Math.floor(750 / res * wx.getSystemInfoSync().windowHeight)
+    wx.showNavigationBarLoading()
     var scrollHight = wx.getSystemInfoSync().windowHeight
     this.setData({
       // res: res,
@@ -38,6 +39,7 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
+        wx.hideNavigationBarLoading()
         var temp = res.data
         var category = []
         var index = 0
@@ -54,19 +56,17 @@ Page({
         category = temp.filter(function (cur) {
           return cur.level === 1
         })
-
         // 计算右边分类数组区间
-        var heigth = 0
-        var heightArr = []
-        heightArr.push(heigth)
-        for (let i = 0; i < category.length; i++) {
-          heigth = this.data.scrollHight * (i + 1)
-          heightArr.push(heigth)
-        }
-
+        // var heigth = 0
+        // var heightArr = []
+        // heightArr.push(heigth)
+        // for (let i = 0; i < category.length; i++) {
+        //   heigth = this.data.scrollHight * (i + 1)
+        //   heightArr.push(heigth)
+        // }
         this.setData({
-          category: category,
-          heightArr: heightArr
+          category: category
+          // heightArr: heightArr
         })
       }
     })
@@ -74,30 +74,29 @@ Page({
 
   onNavBarTap: function (e) {
     var idx = e.currentTarget.dataset.idx
+    var top = this.data.scrollHight * idx
     this.setData({
-      currentType: idx,
-      toView: 'category' + idx
+      top: top,
+      currentType: idx
+      // toView: 'category' + idx
     })
   },
 
-  scroll: function (e) {
-    // var scrollTop = Math.floor(750 / this.data.res * e.detail.scrollTop)
-    // console.log(scrollTop)
-    var scrollTop = e.detail.scrollTop
-    // 一级菜单和二级菜单联动
-    for (let i = 0; i < this.data.category.length; i++) {
-      let heightUp = this.data.heightArr[i]
-      let heightDown = this.data.heightArr[i + 1]
-      if (!heightDown || scrollTop >= heightUp && scrollTop < heightDown) {
-        this.setData({
-          currentType: i
-        })
-      }
-    }
-  },
+  // scroll: function (e) {
+  //   var scrollTop = e.detail.scrollTop
+  //   // 一级菜单和二级菜单联动
+  //   for (let i = 0; i < this.data.category.length; i++) {
+  //     let heightUp = this.data.heightArr[i]
+  //     let heightDown = this.data.heightArr[i + 1]
+  //     if (!heightDown || scrollTop >= heightUp && scrollTop < heightDown) {
+  //       this.setData({
+  //         currentType: i
+  //       })
+  //     }
+  //   }
+  // },
 
   toListTap: function (e) {
-    // console.log(e)
     var idx = e.currentTarget.dataset.idx
     var cidx = e.currentTarget.dataset.cidx
     wx.navigateTo({

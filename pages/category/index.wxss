@@ -1,16 +1,19 @@
 /* pages/list/list.wxss */
 @import '../template/product-tpl.wxss';
 
-page {
+/* page {
   height: 100%;
-}
+} */
 
 .list-container {
   display: flex;
 }
 .nav-bar {
+  position: fixed;
+  left: 0;
   flex-shrink: 0;
   width: 149rpx;
+  height: 100%;
   background-color: #fff;
   border-right: 1rpx solid #eee;
 }
@@ -37,13 +40,28 @@ page {
   width: 6rpx;  
   height: 40rpx;
   background-color: #f56d02;
-} 
+}
 
 .right {
+  position: fixed;
+  /* position: relative; */
+  right: 0;
+  width: 600rpx;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+.right-wrapper {
+  position: absolute;
+  left: 0;
+  transition: all .5s ease-in-out;
+}
+
+/* .right {
   flex: 1;
   width: 600rpx;
   background-color: #fff;
-}
+} */
 /* 去除滚动条 */
 ::-webkit-scrollbar {
   width: 0;

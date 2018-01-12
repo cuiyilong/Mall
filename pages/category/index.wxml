@@ -8,7 +8,7 @@
     </block>
   </scroll-view>
 
-  <scroll-view scroll-y style='height: {{scrollHight}}px' class='right' bindscroll="scroll" scroll-into-view="{{toView}}" scroll-with-animation='ture'>
+  <!-- <scroll-view scroll-y style='height: {{scrollHight}}px' class='right' bindscroll="scroll" scroll-into-view="{{toView}}" scroll-with-animation='ture'>
     <view class='category-wrapper' style='height: {{scrollHight}}px' wx:for="{{category}}" wx:for-item="item" wx:for-index="idx">
       <view class='category-title' id='category{{idx}}'>
         <image src='{{item.pic}}'></image>
@@ -21,5 +21,22 @@
         </view>
       </view>
     </view>
-  </scroll-view>
+  </scroll-view> -->
+
+  <view class='right'>
+    <view class='right-wrapper' style='top: -{{top}}px'>
+      <scroll-view scroll-y class='category-wrapper' style='height: {{scrollHight}}px' wx:for="{{category}}" wx:for-item="item" wx:for-index="idx">
+        <view class='category-title'>
+          <image src='{{item.pic}}'></image>
+          <text>- {{item.name}} -</text>
+        </view>
+        <view class='category-list'>
+          <view class='category' wx:for="{{item.list}}" wx:for-item="list" wx:for-index="cidx" catchtap='toListTap' data-idx='{{idx}}' data-cidx="{{cidx}}">
+            <image src='{{list.pic}}'></image>
+            <text>{{list.name}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
 </view>

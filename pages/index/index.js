@@ -58,6 +58,21 @@ Page({
     })
   },
 
+  bannerToDetail: function (e) {
+    var url = e.currentTarget.dataset.url
+    url = url.split('=')
+    console.log(url)
+    if (url[0] == 'id') {
+      wx.navigateTo({
+        url: '../goods-details/index?id=' + url[1]
+      })
+    } else if (url[0] == 'cid') {
+      wx.navigateTo({
+        url: '/pages/topic/index?cid=' + url[1] + '&category=' + url[3],
+      })
+    }
+  },
+
   onTopicTap: function (e) {
     var cid = e.currentTarget.dataset.cid
     var category = e.currentTarget.dataset.category
